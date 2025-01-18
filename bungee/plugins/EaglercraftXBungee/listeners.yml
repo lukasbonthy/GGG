@@ -1,7 +1,7 @@
 listener_01:
   address: 0.0.0.0:8081
   address_v6: 'null'
-  max_players: 60
+  max_players: 200
   tab_list: GLOBAL_PING
   default_server: lobby
   force_default_server: false
@@ -10,7 +10,7 @@ listener_01:
   redirect_legacy_clients_to: 'null'
   server_icon: IMG_1027.png
   server_motd:
-  - 'CHS Anarchy Server'
+  - '§0CHS Anar§6chy Server'
   allow_motd: true
   allow_query: true
   request_motd_cache:
