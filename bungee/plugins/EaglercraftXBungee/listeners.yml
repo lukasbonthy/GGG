@@ -11,7 +11,7 @@ listener_01:
   server_icon: dbf.png
   server_motd:
   - '&l&6CHS Anarchy 
-&l&fServer
+&l&9Server
 '
   allow_motd: true
   allow_query: true
