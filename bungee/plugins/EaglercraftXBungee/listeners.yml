@@ -8,7 +8,7 @@ listener_01:
   forward_ip: false
   forward_ip_header: X-Real-IP
   redirect_legacy_clients_to: 'null'
-  server_icon: dbf.png
+  server_icon: hi.png
   server_motd:
   - '&l&6CHS Anarchy 
 &l&9Server
