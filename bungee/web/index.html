@@ -1,53 +1,182 @@
-<h1 style="
-    font-family: minecraft;
-    color: white;
-    font-size: 10vh;
-    font-weight: 100;
-">MC Server</h1>
-<button onclick="launchServer()">Game</button>
-<script>
-  function launchServer(){
-    localStorage.setItem("game","true");
-    window.location.href="/game.html";
-  }
-</script>
-<button onclick="launchServer2()">Game Mobile</button>
-<script>
-  function launchServer2(){
-    localStorage.setItem("game","true");
-    window.location.href="/mobile.html";
-  }
-</script>
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Education - Green Valley School</title>
+</head>
+<body>
+    <!-- School Header -->
+    <header style="background-color: #2C5F2D; padding: 1rem; width: 100%; text-align: center;">
+        <img src="school-logo.png" alt="School Logo" style="height: 80px; margin-right: 20px;">
+        <h1 style="color: white; font-family: 'Minecraft', Arial, sans-serif; display: inline-block;">
+            Green Valley School<br>
+            <span style="font-size: 0.6em;">Minecraft Education Portal</span>
+        </h1>
+    </header>
+
+    <!-- Main Content -->
+    <main style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+        <section style="background: rgba(255, 255, 255, 0.9); padding: 2rem; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <h2 style="font-family: 'Minecraft', Arial, sans-serif; color: #2C5F2D; border-bottom: 3px solid #2C5F2D; padding-bottom: 0.5rem;">
+                Crafting & Building Academy
+            </h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div class="course-card">
+                    <h3>🏫 School Server Access</h3>
+                    <button class="launch-btn" onclick="launchServer()">
+                        🖥️ Desktop Version
+                    </button>
+                    <button class="launch-btn mobile" onclick="launchServer2()">
+                        📱 Mobile Version
+                    </button>
+                </div>
+
+                <div class="course-card">
+                    <h3>📜 Quick Crafting Recipes</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>🛠️ Crafting Table: 4 Wood Planks</li>
+                        <li>🪓 Wooden Pickaxe: 3 Wood + 2 Sticks</li>
+                        <li>🏹 Bow: 3 String + 3 Sticks</li>
+                        <li>🧭 Compass: 4 Iron + Redstone</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Crafting Guides Section -->
+        <section style="margin-top: 2rem; text-align: center;">
+            <h3 style="color: #2C5F2D;">Crafting Guides</h3>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <button class="guide-btn" onclick="window.location.href='/crafting-basics.html'">
+                    ⚒️ Basic Crafting
+                </button>
+                <button class="guide-btn" onclick="window.location.href='/redstone.html'">
+                    🔴 Redstone Guides
+                </button>
+                <button class="guide-btn" onclick="window.location.href='/potions.html'">
+                    🧪 Potion Brewing
+                </button>
+                <button class="guide-btn" onclick="window.location.href='/enchanting.html'">
+                    ✨ Enchanting Guide
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- School Footer -->
+    <footer style="background-color: #2C5F2D; color: white; padding: 1rem; text-align: center; position: fixed; bottom: 0; width: 100%;">
+        <p>© 2024 Green Valley School Minecraft Education Program | Need help? Contact: craft-support@grevalley.edu</p>
+        <div style="margin-top: 0.5rem;">
+            <a href="/survival-guide.html" style="color: white; margin: 0 1rem;">Survival Guide</a>
+            <a href="/building-tips.html" style="color: white; margin: 0 1rem;">Building Tips</a>
+            <a href="https://education.minecraft.net" style="color: white; margin: 0 1rem;">Official Guides</a>
+        </div>
+    </footer>
+
+    <script>
+        function launchServer() {
+            localStorage.setItem("game", "true");
+            window.location.href = "/game.html";
+        }
+
+        function launchServer2() {
+            localStorage.setItem("game", "true");
+            window.location.href = "/mobile.html";
+        }
+    </script>
+
+    <style>
   @font-face {
     font-family: minecraft;
     src: url(Minecraft.ttf);
   }
 
-  button{
-    font-family: minecraft;
-    color: white;
-    background: #6f6f6f;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    font-size: 5vh;
-    padding-top: 2vh;
-    padding-bottom: 1vh;
-    border: 1vh solid black;
-    margin: 1vh;
-  }
-
-  button:hover{
-    color:#ffff00;
-    background:#7e88bf;
-  }
-
-  body{
+  body {
     background: url(dirt.jpg);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding-bottom: 100px; /* For footer spacing */
+  }
+
+  /* Academic header styling */
+  header {
+    background-color: #2C5F2D;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    top: 0;
+  }
+
+  header h1 {
+    color: white;
+    font-family: minecraft;
+    font-size: 4vh;
+    margin: 0;
+  }
+
+  /* Combined button styling */
+  button {
+    font-family: minecraft;
+    color: white;
+    background: #6f6f6f;
+    padding: 2vh 5vw;
+    font-size: 5vh;
+    border: 1vh solid black;
+    margin: 1vh;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    color: #ffff00;
+    background: #7e88bf;
+  }
+
+  /* Academic content styling */
+  .course-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem;
+    text-align: center;
+  }
+
+  /* Footer styling */
+  footer {
+    background-color: #2C5F2D;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-family: minecraft;
+  }
+
+  /* Guide links styling */
+  .guide-links {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .guide-links a {
+    color: #ffff00;
+    text-decoration: none;
+    font-family: minecraft;
+    font-size: 3vh;
+  }
+
+  .guide-links a:hover {
+    text-decoration: underline;
   }
 </style>
+</body>
+</html>
