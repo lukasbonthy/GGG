@@ -238,11 +238,11 @@
                 <h2>🔥 Portal Access</h2>
                 <button class="play-portal" onclick="launchServer()">
                     Desktop Realm
-                    <span class="version-pillar">v1.20.2</span>
+                    <span class="version-pillar">v1.8.8</span>
                 </button>
                 <button class="play-portal mobile" onclick="launchServer2()">
-                    Mobile Dimension
-                    <span class="version-pillar">PE 1.20</span>
+                    Mobile Portal
+                    <span class="version-pillar">v1.8.8</span>
                 </button>
             </div>
 
@@ -295,12 +295,12 @@
 
         function launchServer() {
             localStorage.setItem("netherAccess", "granted");
-            window.location.href = "/nether-desktop.html";
+            window.location.href = "/game.html";
         }
 
         function launchServer2() {
             localStorage.setItem("netherAccess", "granted");
-            window.location.href = "/nether-mobile.html";
+            window.location.href = "/mobile.html";
         }
     </script>
 
