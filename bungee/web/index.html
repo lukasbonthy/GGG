@@ -1,230 +1,307 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Academy - Green Valley School</title>
+    <title>Obsidian Academy - Minecraft Education</title>
     <style>
         @font-face {
-            font-family: minecraft;
-            src: url(Minecraft.ttf);
+            font-family: 'Minecraft';
+            src: url('Minecraft.ttf');
         }
 
         body {
-            background: url(dirt.jpg) fixed;
+            background: url('obsidian_bg.jpg') fixed;
             margin: 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            font-family: minecraft;
-            color: white;
+            font-family: 'Minecraft', monospace;
+            color: #e0e0e0;
             line-height: 1.6;
         }
 
         header {
-            background: linear-gradient(to bottom, #2C5F2D 0%, #1E401F 100%);
-            padding: 2rem;
+            background: linear-gradient(to bottom, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 0.8rem 1rem;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            border-bottom: 3px solid #2d2d2d;
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.6);
+            height: 80px;
         }
 
-        .school-logo {
-            height: 100px;
-            margin-right: 2rem;
-            vertical-align: middle;
+        .academy-banner {
+            height: 60px;
+            filter: drop-shadow(0 0 8px rgba(0, 150, 0, 0.5));
+            margin: 0 auto;
+            display: block;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin: 5px 0 0 0;
+            color: #00ff00;
+            text-shadow: 0 0 10px rgba(0,255,0,0.3);
+            display: none;
         }
 
         main {
             flex: 1;
-            padding: 120px 4% 200px;
+            padding: 80px 5% 200px;
             max-width: 1600px;
             margin: 0 auto;
             width: 100%;
             box-sizing: border-box;
         }
 
-        .content-grid {
+        .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 4rem;
-            margin-top: 3rem;
+            gap: 3rem;
+            margin-top: 2rem;
         }
 
-        .server-card {
-            background: rgba(0, 0, 0, 0.75);
-            border: 4px solid #6f6f6f;
-            border-radius: 15px;
-            padding: 3rem;
-            text-align: center;
-            backdrop-filter: blur(6px);
-            transition: transform 0.3s ease;
+        .portal-card {
+            background: rgba(15, 15, 15, 0.95);
+            border: 4px solid #3a3a3a;
+            border-image: linear-gradient(45deg, #3a3a3a, #2d2d2d) 1;
+            padding: 2rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            position: relative;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .server-card:hover {
+        .portal-card:hover {
             transform: translateY(-5px);
         }
 
-        .crafting-list {
+        .play-portal {
+            font-family: 'Minecraft';
+            color: #fff;
+            background: linear-gradient(145deg, #007700, #00aa00);
+            padding: 1.2rem 2.5rem;
+            font-size: 1.8rem;
+            border: 4px solid #005500;
+            margin: 1.5rem 0;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            max-width: 400px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,80,0,0.4);
+        }
+
+        .play-portal:hover {
+            background: linear-gradient(145deg, #00aa00, #00cc00);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+        }
+
+        .play-portal::before {
+            content: '▶';
+            margin-right: 1rem;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
+        }
+
+        .version-pillar {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: #4a4a8a;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            transform: rotate(5deg);
+            border: 2px solid #333366;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .curriculum-list {
             list-style: none;
             padding: 0;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
         }
 
-        .crafting-list li {
-            margin: 1.5rem 0;
+        .curriculum-list li {
+            margin: 1.2rem 0;
             padding: 1rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
+            background: rgba(0,0,0,0.3);
+            border-left: 4px solid #007700;
+            position: relative;
         }
 
-        button {
-            font-family: minecraft;
-            color: white;
-            background: #6f6f6f;
-            padding: 1.8rem 4rem;
-            font-size: 2.2rem;
-            border: 4px solid black;
-            margin: 2rem 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 500px;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        button:hover {
-            color: #ffff00;
-            background: #7e88bf;
-            border-color: #ffff00;
-            box-shadow: 0 6px 20px rgba(255, 255, 0, 0.4);
-            transform: scale(1.05);
+        .curriculum-list li::before {
+            content: '⛏️';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         footer {
-            background: linear-gradient(to top, #2C5F2D 0%, #1E401F 100%);
-            padding: 2.5rem;
+            background: linear-gradient(to top, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 1.5rem;
             text-align: center;
             margin-top: auto;
-            box-shadow: 0 -4px 12px rgba(0,0,0,0.4);
-            font-size: 1.2rem;
+            border-top: 3px solid #2d2d2d;
         }
 
-        .guide-links {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            margin-top: 4rem;
+        .crafting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.4);
+            border: 2px solid #3a3a3a;
         }
 
-        .guide-links a {
-            color: #ffff00;
-            text-decoration: none;
-            font-size: 1.8rem;
-            padding: 1rem 2rem;
-            border: 3px solid #ffff00;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            background: rgba(0,0,0,0.5);
+        .crafting-station {
+            padding: 1.2rem;
+            background: rgba(30,30,30,0.9);
+            border: 2px solid #4a4a4a;
+            border-radius: 4px;
         }
 
-        .guide-links a:hover {
-            background: rgba(255, 255, 0, 0.2);
-            transform: scale(1.1);
+        .crafting-station h3 {
+            color: #00ff00;
+            margin-top: 0;
+            text-shadow: 0 0 8px rgba(0,255,0,0.3);
+            font-size: 1.4rem;
+        }
+
+        .loading-obsidian {
+            width: 100%;
+            height: 4px;
+            background: #1a1a1a;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .loading-lava {
+            height: 100%;
+            background: linear-gradient(90deg, #ff4500, #ffd700);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            header {
+                height: 100px;
+                padding: 0.5rem 1rem;
+            }
+
+            .academy-banner {
+                height: 80px;
+            }
+
+            header h1 {
+                display: block;
+                font-size: 2rem;
+                margin-top: 8px;
+            }
+
+            main {
+                padding-top: 100px;
+            }
+
+            .play-portal {
+                font-size: 2rem;
+                padding: 1.5rem 3rem;
+            }
         }
 
         @media (min-width: 1200px) {
-            .content-grid {
+            .grid-container {
                 grid-template-columns: 1fr 1fr;
             }
-            
-            button {
-                font-size: 2.8rem;
-                padding: 2.2rem 5rem;
-            }
-            
-            header h1 {
-                font-size: 4rem;
-            }
-            
-            .server-card {
-                padding: 4rem;
-            }
-        }
 
-        @media (min-width: 1600px) {
-            main {
-                padding-left: 6rem;
-                padding-right: 6rem;
-            }
-            
-            .content-grid {
-                gap: 6rem;
-            }
-            
-            .guide-links {
-                gap: 4rem;
+            .portal-card {
+                padding: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="school-logo.png" alt="School Logo" class="school-logo">
-        <h1>Green Valley Minecraft Academy</h1>
-    </header>
+    
+
+    
 
     <main>
-        <div class="content-grid">
-            <div class="server-card">
-                <h2>🏫 School Server Access</h2>
-                <button onclick="launchServer()">🖥️ Desktop Version</button>
-                <button onclick="launchServer2()">📱 Mobile Version</button>
+        <div class="grid-container">
+            <div class="portal-card">
+                <h2>🔥 Portal Access</h2>
+                <button class="play-portal" onclick="launchServer()">
+                    Desktop Realm
+                    <span class="version-pillar">v1.20.2</span>
+                </button>
+                <button class="play-portal mobile" onclick="launchServer2()">
+                    Mobile Dimension
+                    <span class="version-pillar">PE 1.20</span>
+                </button>
             </div>
 
-            <div class="server-card">
-                <h2>📜 Essential Crafting Recipes</h2>
-                <ul class="crafting-list">
-                    <li>🛠️ Crafting Table: 4 Wood Planks</li>
-                    <li>🪓 Iron Pickaxe: 3 Iron + 2 Sticks</li>
-                    <li>🏹 Bow: 3 String + 3 Sticks</li>
-                    <li>🧭 Compass: 4 Iron + Redstone</li>
-                    <li>🕯️ Torch: 1 Coal + 1 Stick</li>
+            <div class="portal-card">
+                <h2>📜 Core Curriculum</h2>
+                <ul class="curriculum-list">
+                    <li>Advanced Redstone Circuitry</li>
+                    <li>Netherrack Architecture Design</li>
+                    <li>Enchanted Item Development</li>
+                    <li>Mob Behavioral Studies</li>
+                    <li>Biome Conservation Science</li>
                 </ul>
             </div>
         </div>
 
-        <div class="guide-links">
-            <a href="/crafting-basics">⚒️ Crafting Basics</a>
-            <a href="/redstone">🔴 Redstone Guides</a>
-            <a href="/building">🏗️ Building Tips</a>
-            <a href="/enchanting">✨ Enchanting Guide</a>
+        <div class="crafting-grid">
+            <div class="crafting-station">
+                <h3>⚒️ Crafting Lab</h3>
+                <p>Tool Forging<br>
+                Armor Smithing<br>
+                Material Studies</p>
+            </div>
+            <div class="crafting-station">
+                <h3>🧪 Brewery</h3>
+                <p>Potion Creation<br>
+                Chemical Reactions<br>
+                Effect Analysis</p>
+            </div>
+            <div class="crafting-station">
+                <h3>🔭 Observatory</h3>
+                <p>Celestial Navigation<br>
+                End Portal Studies<br>
+                Dimension Theory</p>
+            </div>
         </div>
     </main>
 
-    <footer>
-        <p>© 2024 Green Valley Minecraft Academy | Support: minecraft-support@grevalley.edu</p>
-        <div style="margin-top: 1.5rem;">
-            <a href="/survival-guide" style="color: #ffff00; margin: 0 2rem;">Survival Handbook</a>
-            <a href="/faq" style="color: #ffff00; margin: 0 2rem;">FAQ</a>
-            <a href="https://education.minecraft.net" style="color: #ffff00; margin: 0 2rem;">Official Resources</a>
-        </div>
-    </footer>
+    
 
     <script>
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loading-lava');
+            let width = 0;
+            const interval = setInterval(() => {
+                width += 10;
+                loader.style.width = width + '%';
+                if(width >= 100) clearInterval(interval);
+            }, 50);
+        });
+
         function launchServer() {
-            localStorage.setItem("game", "true");
-            window.location.href = "/game.html";
+            localStorage.setItem("netherAccess", "granted");
+            window.location.href = "/nether-desktop.html";
         }
 
         function launchServer2() {
-            localStorage.setItem("game", "true");
-            window.location.href = "/mobile.html";
+            localStorage.setItem("netherAccess", "granted");
+            window.location.href = "/nether-mobile.html";
         }
     </script>
-</body>
-</html>
+
+</body></html>
