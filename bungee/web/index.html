@@ -88,94 +88,76 @@
     </script>
 
     <style>
-  @font-face {
-    font-family: minecraft;
-    src: url(Minecraft.ttf);
-  }
+        @font-face {
+            font-family: minecraft;
+            src: url(Minecraft.ttf);
+        }
 
-  body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    padding-bottom: 100px; /* For footer spacing */
-  }
+        body {
+            background: url('crafting-table-bg.jpg') fixed;
+            background-size: cover;
+            margin: 0;
+            min-height: 100vh;
+            padding-bottom: 100px;
+            font-family: Arial, sans-serif;
+        }
 
-  /* Academic header styling */
-  header {
-    background-color: #2C5F2D;
-    padding: 1rem;
-    width: 100%;
-    text-align: center;
-    position: fixed;
-    top: 0;
-  }
+        .launch-btn {
+            font-family: minecraft, Arial, sans-serif;
+            background: #3B7A4E;
+            color: white;
+            padding: 1.5rem 2rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            margin: 0.5rem;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
 
-  header h1 {
-    color: white;
-    font-family: minecraft;
-    font-size: 4vh;
-    margin: 0;
-  }
+        .launch-btn:hover {
+            background: #2C5F2D;
+            transform: translateY(-2px);
+        }
 
-  /* Combined button styling */
-  button {
-    font-family: minecraft;
-    color: white;
-    background: #6f6f6f;
-    padding: 2vh 5vw;
-    font-size: 5vh;
-    border: 1vh solid black;
-    margin: 1vh;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+        .guide-btn {
+            background: #8B4513;
+            color: #FFD700;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Minecraft', Arial;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: 2px solid #654321;
+        }
 
-  button:hover {
-    color: #ffff00;
-    background: #7e88bf;
-  }
+        .guide-btn:hover {
+            background: #654321;
+            color: #FFF;
+        }
 
-  /* Academic content styling */
-  .course-card {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 2rem;
-    border-radius: 10px;
-    margin: 2rem;
-    text-align: center;
-  }
+        .course-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 3px solid #2C5F2D;
+        }
 
-  /* Footer styling */
-  footer {
-    background-color: #2C5F2D;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    font-family: minecraft;
-  }
+        .course-card h3 {
+            margin-top: 0;
+            color: #2C5F2D;
+            font-family: 'Minecraft';
+        }
 
-  /* Guide links styling */
-  .guide-links {
-    display: flex;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .guide-links a {
-    color: #ffff00;
-    text-decoration: none;
-    font-family: minecraft;
-    font-size: 3vh;
-  }
-
-  .guide-links a:hover {
-    text-decoration: underline;
-  }
-</style>
+        .course-card li {
+            padding: 0.5rem 0;
+            font-family: minecraft;
+            color: #3B7A4E;
+        }
+    </style>
 </body>
 </html>
