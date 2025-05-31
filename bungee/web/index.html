@@ -1,179 +1,101 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obsidian Academy - Minecraft Education</title>
+    <title>Swifly Network | Minecraft Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @font-face {
-            font-family: 'Minecraft';
-            src: url('Minecraft.ttf');
+        :root {
+            --primary: #8a2be2;
+            --primary-dark: #5a189a;
+            --secondary: #240046;
+            --dark-bg: #0f0f1a;
+            --card-bg: rgba(25, 25, 40, 0.92);
+            --text-light: #e0e0ff;
+            --text-lighter: #f5f5ff;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            background: url('dirt.jpg') fixed;
+            background: linear-gradient(135deg, #0a0a14 0%, #141422 100%);
             margin: 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            font-family: 'Minecraft', monospace;
-            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-light);
             line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(36, 0, 70, 0.1) 0%, transparent 20%);
         }
 
         header {
-            background: linear-gradient(to bottom, #0a0a0a 0%, #1a1a1a 100%);
-            padding: 0.8rem 1rem;
+            background: linear-gradient(to bottom, #0a0a14 0%, #141422 100%);
+            padding: 1rem;
             text-align: center;
-            border-bottom: 3px solid #2d2d2d;
+            border-bottom: 3px solid var(--primary);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.6);
-            height: 80px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        .academy-banner {
-            height: 60px;
-            filter: drop-shadow(0 0 8px rgba(0, 150, 0, 0.5));
-            margin: 0 auto;
-            display: block;
+        .logo-text {
+            font-size: 2.5rem;
+            color: var(--text-lighter);
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #9d4edd, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+            margin: 10px 0;
         }
 
-        header h1 {
-            font-size: 1.8rem;
-            margin: 5px 0 0 0;
-            color: #00ff00;
-            text-shadow: 0 0 10px rgba(0,255,0,0.3);
-            display: none;
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin: 10px 0;
         }
 
-        main {
-            flex: 1;
-            padding: 80px 5% 200px;
-            max-width: 1600px;
-            margin: 0 auto;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
-        .portal-card {
-            background: rgba(15, 15, 15, 0.95);
-            border: 4px solid #3a3a3a;
-            border-image: linear-gradient(45deg, #3a3a3a, #2d2d2d) 1;
-            padding: 2rem;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-            position: relative;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .portal-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .play-portal {
-            font-family: 'Minecraft';
-            color: #fff;
-            background: linear-gradient(145deg, #007700, #00aa00);
-            padding: 1.2rem 2.5rem;
-            font-size: 1.8rem;
-            border: 4px solid #005500;
-            margin: 1.5rem 0;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 100%;
-            max-width: 400px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 16px rgba(0,80,0,0.4);
-        }
-
-        .play-portal:hover {
-            background: linear-gradient(145deg, #00aa00, #00cc00);
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
-        }
-
-        .play-portal::before {
-            content: '▶';
-            margin-right: 1rem;
-            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
-        }
-
-        .version-pillar {
-            position: absolute;
-            top: -12px;
-            right: -12px;
-            background: #4a4a8a;
-            padding: 0.5rem 1.2rem;
-            border-radius: 4px;
-            font-size: 1.1rem;
-            transform: rotate(5deg);
-            border: 2px solid #333366;
-            box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .curriculum-list {
-            list-style: none;
-            padding: 0;
-            font-size: 1.3rem;
-        }
-
-        .curriculum-list li {
-            margin: 1.2rem 0;
-            padding: 1rem;
-            background: rgba(0,0,0,0.3);
-            border-left: 4px solid #007700;
-            position: relative;
-        }
-
-        .curriculum-list li::before {
-            content: '⛏️';
-            position: absolute;
-            left: -30px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        footer {
-            background: linear-gradient(to top, #0a0a0a 0%, #1a1a1a 100%);
-            padding: 1.5rem;
-            text-align: center;
-            margin-top: auto;
-            border-top: 3px solid #2d2d2d;
-        }
-
-        .crafting-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: rgba(0,0,0,0.4);
-            border: 2px solid #3a3a3a;
-        }
-
-        .crafting-station {
-            padding: 1.2rem;
-            background: rgba(30,30,30,0.9);
-            border: 2px solid #4a4a4a;
-            border-radius: 4px;
-        }
-
-        .crafting-station h3 {
-            color: #00ff00;
-            margin-top: 0;
-            text-shadow: 0 0 8px rgba(0,255,0,0.3);
+        .social-link {
+            color: var(--text-light);
+            background: rgba(36, 0, 70, 0.6);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.4rem;
+            transition: var(--transition);
+            border: 2px solid rgba(138, 43, 226, 0.3);
         }
 
-        .loading-obsidian {
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+
+        /* Loading bar */
+        .loading-bar {
             width: 100%;
             height: 4px;
             background: #1a1a1a;
@@ -185,104 +107,521 @@
 
         .loading-lava {
             height: 100%;
-            background: linear-gradient(90deg, #ff4500, #ffd700);
+            background: linear-gradient(90deg, #ff4500, #ffd700, #ff4500);
             width: 0%;
             transition: width 0.3s ease;
         }
 
-        @media (min-width: 768px) {
-            header {
-                height: 100px;
-                padding: 0.5rem 1rem;
-            }
+        main {
+            flex: 1;
+            padding: 30px 5% 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
 
-            .academy-banner {
-                height: 80px;
-            }
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            background: rgba(15, 15, 30, 0.6);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
 
-            header h1 {
-                display: block;
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            animation: border-pulse 3s infinite;
+        }
+
+        @keyframes border-pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #c77dff, #9d4edd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 25px;
+            color: var(--text-lighter);
+            opacity: 0.9;
+        }
+
+        /* Portal Access Section - Placed First */
+        .portal-section {
+            margin-bottom: 40px;
+        }
+
+        .portal-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            transition: var(--transition);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(138, 43, 226, 0.4);
+        }
+
+        .portal-card h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--text-lighter);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .portal-card h2 i {
+            font-size: 2rem;
+            color: var(--primary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .access-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .play-portal {
+            color: #fff;
+            background: linear-gradient(145deg, var(--primary), #9d4edd);
+            padding: 25px 20px;
+            font-size: 1.6rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(90, 24, 154, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .play-portal:hover {
+            background: linear-gradient(145deg, #9d4edd, #7b2cbf);
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.6);
+        }
+
+        .play-portal i {
+            font-size: 2.5rem;
+            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+        }
+
+        .version-pillar {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary);
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 2px solid rgba(36, 0, 70, 0.5);
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .connection-instructions-btn {
+            background: rgba(36, 0, 70, 0.6);
+            color: var(--text-light);
+            border: 2px solid var(--primary);
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 400px;
+            margin: 30px auto 0;
+            justify-content: center;
+        }
+
+        .connection-instructions-btn:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .features-section {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            transition: var(--transition);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            margin-bottom: 40px;
+        }
+
+        .features-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: var(--text-lighter);
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            background: rgba(36, 0, 70, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: rgba(138, 43, 226, 0.4);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-lighter);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .server-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transition: var(--transition);
+            position: relative;
+            aspect-ratio: 16/9;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        footer {
+            background: linear-gradient(to top, #0a0a14 0%, #141422 100%);
+            padding: 2rem;
+            text-align: center;
+            margin-top: auto;
+            border-top: 3px solid var(--primary);
+            font-size: 1rem;
+            color: var(--text-lighter);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+
+        .discord-link {
+            background: linear-gradient(to right, #5865F2, #7289DA);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .discord-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .logo-text {
                 font-size: 2rem;
-                margin-top: 8px;
             }
-
-            main {
-                padding-top: 100px;
+            
+            .portal-card, .features-section {
+                padding: 25px;
             }
-
+            
             .play-portal {
-                font-size: 2rem;
-                padding: 1.5rem 3rem;
+                padding: 20px 15px;
+                font-size: 1.3rem;
             }
         }
 
-        @media (min-width: 1200px) {
-            .grid-container {
-                grid-template-columns: 1fr 1fr;
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
             }
-
-            .portal-card {
-                padding: 2.5rem;
+            
+            .logo-text {
+                font-size: 1.7rem;
+            }
+            
+            .access-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .play-portal i {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
+    <div class="loading-bar">
+        <div class="loading-lava"></div>
+    </div>
     
-
-    
+    <header>
+        <div class="logo-text">Swifly Network MC</div>
+        <div class="social-links">
+            <a href="https://discord.gg/EVeQ3RssqX" target="_blank" class="social-link">
+                <i class="fab fa-discord"></i>
+            </a>
+            <a href="https://www.youtube.com/@SwiflyNetwork" class="social-link">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+    </header>
 
     <main>
-        <div class="grid-container">
-            <div class="portal-card">
-                <h2>🔥 Portal Portal</h2>
-                <button class="play-portal" onclick="launchServer()">
-                    Desktop Portal
-                    <span class="version-pillar">v1.8.8</span>
-                </button>
-                <button class="play-portal mobile" onclick="launchServer2()">
-                    Mobile Portal
-                    <span class="version-pillar">v1.8.8</span>
-                </button>
-            </div>
+        <section class="hero">
+            <h1>ULTIMATE MINECRAFT ANARCHY EXPERIENCE</h1>
+            <p>Join our thriving community in a no-rules, long-term survival world</p>
+        </section>
 
+        <section class="portal-section">
             <div class="portal-card">
-                <h2>📜 Core Curriculum</h2>
-                <ul class="curriculum-list">
-                    <li>Advanced Redstone Circuitry</li>
-                    <li>Netherrack Architecture Design</li>
-                    <li>Enchanted Item Development</li>
-                    <li>Mob Behavioral Studies</li>
-                    <li>Biome Conservation Science</li>
-                </ul>
+                <h2><i class="fas fa-door-open"></i> PORTAL ACCESS</h2>
+                <div class="access-buttons">
+                    <button class="play-portal" onclick="launchServer()">
+                        <i class="fas fa-desktop"></i>
+                        Desktop Portal
+                        <span class="version-pillar">v1.8.8</span>
+                    </button>
+                    <button class="play-portal" onclick="launchServer2()">
+                        <i class="fas fa-mobile-alt"></i>
+                        Mobile Portal
+                        <span class="version-pillar">v1.8.8</span>
+                    </button>
+                </div>
+                <button class="connection-instructions-btn" id="instructionsBtn">
+                    <i class="fas fa-info-circle"></i>
+                    Server Connection Instructions
+                </button>
             </div>
-        </div>
+        </section>
 
-        <div class="crafting-grid">
-            <div class="crafting-station">
-                <h3>⚒️ Crafting Lab</h3>
-                <p>Tool Forging<br>
-                Armor Smithing<br>
-                Material Studies</p>
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2><i class="fas fa-star"></i> SERVER FEATURES</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-ban"></i>
+                    <h3>No Rules</h3>
+                    <p>Complete freedom to play your way with no restrictions</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-infinity"></i>
+                    <h3>Long-Term Anarchy</h3>
+                    <p>Persistent world that will run for 5+ years</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>30+ Active Players</h3>
+                    <p>Thriving community with daily active players</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-plug"></i>
+                    <h3>Cross-Platform</h3>
+                    <p>Play on both mobile and desktop devices</p>
+                </div>
             </div>
-            <div class="crafting-station">
-                <h3>🧪 Brewery</h3>
-                <p>Potion Creation<br>
-                Chemical Reactions<br>
-                Effect Analysis</p>
+        </section>
+
+        <!-- Server Gallery -->
+        <h2 style="text-align: center; margin: 40px 0 20px; color: var(--text-lighter);">
+            <i class="fas fa-camera"></i> SERVER PREVIEW
+        </h2>
+        <div class="server-gallery">
+            <div class="gallery-item">
+                <img src="/" alt="Spawn">
             </div>
-            <div class="crafting-station">
-                <h3>🔭 Observatory</h3>
-                <p>Celestial Navigation<br>
-                End Portal Studies<br>
-                Dimension Theory</p>
+            <div class="gallery-item">
+                <img src="/" alt="Lobby">
+            </div>
+            <div class="gallery-item">
+                <img src="/" alt="World">
+            </div>
+            <div class="gallery-item">
+                <img src="/" alt="World">
             </div>
         </div>
     </main>
 
-    
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>Join Our Community</h3>
+                <a href="https://discord.gg/EVeQ3RssqX" target="_blank" class="discord-link">
+                    <i class="fab fa-discord"></i> Swifly Network Discord
+                </a>
+            </div>
+            <div>
+                <h3>Server Information</h3>
+                <p>IP: wss://citrusmc.me</p>
+                <p>Version: 1.8.8</p>
+            </div>
+            <div>
+                <p>© 2025 Swifly Network Minecraft Server</p>
+                <p>True Minecraft Freedom - No Rules, No Limits</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Connection Instructions Modal -->
+    <div id="instructionsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+        <div style="background: var(--card-bg); max-width: 800px; width: 90%; border-radius: var(--border-radius); padding: 30px; position: relative; border: 2px solid var(--primary);">
+            <button id="closeModal" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-light); font-size: 1.5rem; cursor: pointer;">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <h2 style="color: var(--primary); text-align: center; margin-bottom: 25px; font-size: 2rem;">
+                <i class="fas fa-plug"></i> Server Connection Guide
+            </h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 30px;">
+                <div>
+                    <h3 style="color: var(--text-lighter); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-list-ol"></i> Connection Steps
+                    </h3>
+                    <ol style="padding-left: 20px; font-size: 1.1rem; line-height: 1.8;">
+                        <li>Launch The Portal from our website</li>
+                        <li>Enter your Username and remember it for future-logii</li>
+                        <li>Go to Multiplayer > Add Server</li>
+                        <li>Enter: <strong>wss://citrusmc.me</strong></li>
+                        <li>Click "Done"</li>
+                    </ol>
+                    
+                    <div style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 8px; margin-top: 20px; text-align: center; border: 2px solid var(--primary);">
+                        <p style="font-family: monospace; font-size: 1.4rem; color: var(--primary);">
+                            wss://citrusmc.me
+                        </p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="color: var(--text-lighter); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-images"></i> Visual Guide
+                    </h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div style="border-radius: 8px; overflow: hidden; border: 2px solid rgba(138,43,226,0.3);">
+                            <img src="/">
+                        </div>
+                        <div style="border-radius: 8px; overflow: hidden; border: 2px solid rgba(138,43,226,0.3);">
+                            <img src="/" alt="Add Server" style="width: 100%; display: block;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; font-size: 1.1rem; color: var(--text-light);">
+                <i class="fas fa-info-circle"></i> Server supports both Mobile & Desktop!
+            </p>
+        </div>
+    </div>
 
     <script>
+        // Loading bar animation
         window.addEventListener('load', () => {
             const loader = document.querySelector('.loading-lava');
             let width = 0;
@@ -293,6 +632,7 @@
             }, 50);
         });
         
+        // Launch functions
         function launchServer() {
             localStorage.setItem("game", "true");
             window.location.href = "/game.html";
@@ -302,6 +642,26 @@
             localStorage.setItem("game", "true");
             window.location.href = "/mobile.html";
         }
+        
+        // Modal functionality
+        const modal = document.getElementById('instructionsModal');
+        const openBtn = document.getElementById('instructionsBtn');
+        const closeBtn = document.getElementById('closeModal');
+        
+        openBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+        
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
     </script>
-
-</body></html>
+</body>
+</html>
